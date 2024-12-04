@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - Weekly Jump</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="/admin/dashboard">Admin Dashboard</a>
+    <ul class="navbar-nav ms-auto">
+        <li class="nav-item">
+            <a class="nav-link" th:href="@{/admin/upload}">Upload New Content</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" th:href="@{/logout}">Logout</a>
+        </li>
+    </ul>
+</nav>
+
+<div class="container mt-5">
+    <h2>Manage Content</h2>
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="col">Title</th>
+            <th scope="col">Description</th>
+            <th scope="col">Image</th>
+            <th scope="col">Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="post : ${posts}">
+            <td th:text="${post.title}">Content Title</td>
+            <td th:text="${post.content}">Description here</td>
+            <td>
+                <img th:if="${post.postImg != null}" th:src="'data:image/jpeg;base64,' + ${post.postImageBase64}" alt="Post Image" style="width: 100px; height: auto;">
+            </td>
+            <td>
+                <a th:href="@{/admin/edit/{id}(id=${post.id})}" class="btn btn-primary">Edit</a>
+                <a th:href="@{/admin/delete/{id}(id=${post.id})}" class="btn btn-danger">Delete</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

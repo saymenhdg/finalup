@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Post</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="/admin/dashboard">Admin Dashboard</a>
+    <ul class="navbar-nav ms-auto">
+        <li class="nav-item">
+            <a class="nav-link" th:href="@{/admin/upload}">Upload New Content</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/logout">Logout</a>
+        </li>
+    </ul>
+</nav>
+
+<div class="container mt-5">
+    <h1>Create a New Post</h1>
+
+    <form action="/admin/create-post" method="post" enctype="multipart/form-data">
+        <div class="mb-3">
+            <label for="title" class="form-label">Title:</label>
+            <input type="text" id="title" name="title" class="form-control" required>
+        </div>
+        <div class="mb-3">
+            <label for="content" class="form-label">Content:</label>
+            <textarea id="content" name="content" class="form-control" required></textarea>
+        </div>
+        <div class="mb-3">
+            <label for="postImg" class="form-label">Post Image:</label>
+            <input type="file" id="postImg" name="postImg" class="form-control">
+        </div>
+        <div class="mb-3">
+            <input type="submit" value="Create Post" class="btn btn-primary">
+        </div>
+    </form>
+
+    <p th:text="${error}" style="color:red;"></p>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
